@@ -1,4 +1,4 @@
-# 使用Python进行自然语言处理
+# 使用Python进行自然语言处理实践
 
 python --version 3.5.2
 
