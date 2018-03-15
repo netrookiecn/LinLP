@@ -1,5 +1,7 @@
 # 使用Python进行自然语言处理
 
+python --version 3.5.2
+
 
 NewWordFinder:
 新词发现
