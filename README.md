@@ -2,9 +2,10 @@
 
 python --version 3.5.2
 
+### Finished:
 
 NewWordFinder:
-新词发现
+新词发现功能
 
 
 OpenSourceTools:
@@ -17,3 +18,6 @@ sentiment：
 情感分析实践-目前使用word2vec和svm实现
 
 
+### To do list
+
+1. HMM词性标注
