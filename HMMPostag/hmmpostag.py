@@ -42,13 +42,13 @@ print("词性标注的任务就是：给一个句子，计算出概率最大的�
 print("统计全部可能的词性标签")
 alltags=set(brown_tags)
 
-print("viterbi and backpointer（记录词性标签的前一个词性标签）")
+print("viterbi(记录每个单词的所有 的 词性标签及概率map ) and backpointer（记录词性标签的前一个词性标签）")
 viterbi = []
 backpointer = []
 
 first_viterbi = {}
 first_pointer = {}
-print("以 i want to race为例")
+print("以 I want to race为例")
 sentence = ["I","want","to","race"]
 sentlen = len(sentence)
 
@@ -61,8 +61,15 @@ for tag in alltags:
 print("计算第一个单词在所有标签情况下的概率，并存储到viterbi 和 pointer")
 viterbi.append(first_viterbi)
 backpointer.append(first_pointer)
+
+print("计算完第一个单词之后，viterbi变为：")
+print(viterbi)
+print("计算完第一个单词之后，pointer变为：所有词的前一个词性均为START")
+print(backpointer)
+
 currbest = max(first_viterbi.keys(), key = lambda tag: first_viterbi[ tag ])
-print( "Word", "'" + sentence[0] + "'", "current best two-tag sequence:", first_pointer[ currbest], currbest)
+print( "Word", "'" + sentence[0] + "'", "当前单词前一个标签及最好的词性标签", first_pointer[ currbest], currbest)
+
 print("开始计算全部单词的词性标签: ")
 for wordindex in range(1,sentlen):
     this_viterbi={}
@@ -71,6 +78,7 @@ for wordindex in range(1,sentlen):
 
     for tag in alltags:
         if tag=="START":continue
+        #best_previous指的是
         best_previous = max(prev_viterbi.keys(),
                             key=lambda prevtag: \
                             prev_viterbi[prevtag] * cpd_tags[prevtag].prob(tag) * cpd_tagwords[tag].prob(sentence[wordindex]))
@@ -90,15 +98,16 @@ for wordindex in range(1,sentlen):
     backpointer.append(this_pointer)
 
 
-# 找所有以END结尾的tag sequence
+print("找所有以END结尾的tag sequence")
 prev_viterbi = viterbi[-1]
 best_previous = max(prev_viterbi.keys(),
                     key = lambda prevtag: prev_viterbi[ prevtag ] * cpd_tags[prevtag].prob("END"))
 
 prob_tagsequence = prev_viterbi[ best_previous ] * cpd_tags[ best_previous].prob("END")
 
-# 我们这会儿是倒着存的。。。。因为。。好的在后面
+# 我们这会儿是倒着存的。所以待会需要将其反转过来
 best_tagsequence = [ "END", best_previous ]
+
 # 同理 这里也有倒过来
 backpointer.reverse()
 
