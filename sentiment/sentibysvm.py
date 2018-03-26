@@ -6,6 +6,7 @@ from sklearn.externals import joblib
 from sklearn.svm import SVC
 from sentiment import JiebaWithStopwords
 
+#使用word2vec得到的单词向量 通过加权平均  得到句子的向量
 def build_sentence_vector(text):
     size=200
     imdb_w2v = Word2Vec.load('w2v_model.pkl')
@@ -31,18 +32,18 @@ pos['words'] = pos[0].apply(cw)
 y = np.concatenate((np.ones(len(pos)), np.zeros(len(neg))))
 x_train, x_test, y_train, y_test = train_test_split(np.concatenate((pos['words'],neg['words'])), y,test_size=0.2)
 
-print('begin word2vec')
+print('begin word2vec train...')
 n_dim = 200
 imdb_w2v = Word2Vec(x_train,size=n_dim,window=5, min_count=5)
 imdb_w2v.save('w2v_model.pkl')
-print('finished word2vec')
+print('finished word2vec ！')
 
 
 clf = SVC(kernel='rbf', verbose=True)
 train_vecs = np.concatenate([build_sentence_vector(z) for z in x_train])
-print('begin')
+print('begin svm train...')
 clf.fit(train_vecs, y_train)
 joblib.dump(clf, 'svmModel.pkl')
-print('predict')
+print('predict using svm...')
 test_vecs = np.concatenate([build_sentence_vector(rr) for rr in x_test])
 print(clf.score(test_vecs, y_test))
