@@ -6,10 +6,10 @@ import  urllib.request
 import nltk
 import time
 import numpy as np
-url ="http://archive.ics.uci.edu/ml/machine-learning-databases/pima-indians-diabetes/pima-indians-diabetes.data"
+#url ="http://archive.ics.uci.edu/ml/machine-learning-databases/pima-indians-diabetes/pima-indians-diabetes.data"
 #下载文件并用“，”分割为矩阵用于运算
-raw_data = urllib.request.urlopen(url)
-dataset = np.loadtxt(raw_data, delimiter=",")
+#raw_data = urllib.request.urlopen(url)
+dataset = np.loadtxt("../resource/pima-indians-diabetes.data.txt", delimiter=",")
 
 # separate the data from the target attributes
 
