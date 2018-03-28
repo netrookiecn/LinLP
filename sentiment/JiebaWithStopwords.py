@@ -3,7 +3,7 @@ def stopwordsList(filepath):
     stopwords = [line.strip() for line in open(filepath,'r',encoding='utf-8').readlines()]
     return stopwords
 def parseWithStopwords(str):
-    stopwords = stopwordsList('stopwords.txt')
+    stopwords = stopwordsList('../resource/stopwords.txt')
     k = jieba.cut(str,cut_all=False)
     output = []
     for word in k:
