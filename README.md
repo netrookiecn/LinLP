@@ -28,5 +28,5 @@ word2vec使用
 
 ### To do list
 
-1. open source tools功能重新整理
+1. open source tools功能重新整理：nltk对语料的处理及sklearn对于特征及数据的处理
 2. python crf预测
