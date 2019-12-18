@@ -4,7 +4,6 @@
 python --version 3.5.2  
 tensorflow  
 keras  
-pytorch  
 
 
 本项目旨在归纳总结自然语言处理工程师所需的理论与实践内容，每个模块尽量包含理论（经典算法和最新paper）和实践部分。
@@ -96,8 +95,6 @@ transe
 
 （文件夹）LDATopicModel:lda主题模型（done）
 
-10、机器翻译：
-德译英
 
 
 
