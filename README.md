@@ -1,6 +1,6 @@
 # 使用Python进行自然语言处理实践
 
-实验环境：
+代码环境：
 python --version 3.5.2  
 tensorflow  
 keras  
